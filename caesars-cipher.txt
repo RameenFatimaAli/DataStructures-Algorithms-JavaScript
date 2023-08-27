@@ -1,0 +1,22 @@
+function rot13(str) {
+  const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+  const shift = 13;
+  
+  function decodeChar(char) {
+    const isUpperCase = char === char.toUpperCase();
+    char = char.toUpperCase();
+    
+    if (alphabet.includes(char)) {
+      let decodedIndex = (alphabet.indexOf(char) + shift) % 26;
+      let decodedChar = alphabet[decodedIndex];
+      return isUpperCase ? decodedChar : decodedChar.toLowerCase();
+    }
+    
+    return char;
+  }
+  
+  return str.split('').map(decodeChar).join('');
+}
+
+// Test cases
+console.log(rot13("SERR PBQR PNZC"));  // "FREE CODE CAMP"
